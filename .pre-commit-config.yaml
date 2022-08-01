@@ -1,0 +1,8 @@
+repos:
+- repo: local
+  hooks:
+  - id: cpplint
+    name: cpplint
+    entry: .hooks/cpplint-pre-commit-hook.sh
+    stages: [commit]
+    language: script
