@@ -83,9 +83,9 @@ int main(int argc, char** argv) {
         if (valid) {
             ret = snprintf(header_buf, BUFFER-1, "%s %s\r\n", "HTTP/1.1", status_line[0]);
             len += ret;
-            ret = snprintf(header_buf + len, BUFFER-1-len, "Content-Length: %d\r\n", file_stat.st_size);
+            ret = snprintf(header_buf+len, BUFFER-1-len, "Content-Length: %d\r\n", file_stat.st_size);
             len += ret;
-            ret = snprintf(header_buf + len, BUFFER-1-len, "%s", "\r\n");
+            ret = snprintf(header_buf+len, BUFFER-1-len, "%s", "\r\n");
 
             struct iovec iv[2];
             iv[0].iov_base = header_buf;
