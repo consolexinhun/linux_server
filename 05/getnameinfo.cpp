@@ -19,13 +19,12 @@ int main(int argc, char** argv) {
     hints.ai_socktype = SOCK_STREAM;
     getaddrinfo("localhost", "daytime", &hints, &res);
 
-    struct sockaddr_in addr = *(struct sockaddr_in*)res->ai_addr;
     char hostbuf[16];
     char servbuf[10];
-    socklen_t addr_size = sizeof(addr);
     // 这里 addr_size 必须先将 sockaddr 转 sockaddr_in，再计算 sizeof
     // 不能直接 sizeof(sockaddr)，因为 IPv6 的 sockaddr 比 IPv4 的长
-    int ret = getnameinfo(res->ai_addr, addr_size, hostbuf, sizeof(hostbuf), servbuf, sizeof(servbuf), NI_NAMEREQD);
+    // 或者使用 INET_ADDRSTRLEN 及 INET6_ADDRSTRLEN 分别表示 IPv4 和 IPv6 地址长度
+    int ret = getnameinfo(res->ai_addr, INET_ADDRSTRLEN, hostbuf, sizeof(hostbuf), servbuf, sizeof(servbuf), NI_NAMEREQD);
 
     if (ret == 0) {
         printf("host: %s\n", hostbuf);

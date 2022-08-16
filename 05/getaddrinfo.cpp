@@ -27,7 +27,7 @@ int main(int argc, char** argv) {
 
     struct sockaddr_in addr = *(struct sockaddr_in*)res->ai_addr;
 
-    char ipbuf[16];
+    char ipbuf[16];  // INET_ADDRSTRLEN
     printf("ip: %s\n", inet_ntop(AF_INET, &addr.sin_addr, ipbuf, sizeof(ipbuf)));
     printf("port: %d\n", ntohs(addr.sin_port));
 
