@@ -25,8 +25,6 @@ int main(int argc, char** argv) {
     hints.ai_socktype = SOCK_STREAM;
     getaddrinfo("localhost", "daytime", &hints, &res);
 
-    freeaddrinfo(res);
-
     struct sockaddr_in addr = *(struct sockaddr_in*)res->ai_addr;
 
     char ipbuf[16];
@@ -42,6 +40,8 @@ int main(int argc, char** argv) {
     assert(result > 0);
     buffer[result] = 0;
     printf("the daytime  is :%s", buffer);
+
+    freeaddrinfo(res);
     close(sockfd);
     return 0;
 }
