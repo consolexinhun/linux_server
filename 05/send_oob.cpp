@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
+#include <error.h>
 
 int main(int argc, char** argv) {
     if (argc <= 2) {
@@ -26,7 +27,8 @@ int main(int argc, char** argv) {
     int sockfd = socket(PF_INET, SOCK_STREAM, 0);
     assert(sockfd >= 0);
     if (connect(sockfd, (struct sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
-        printf("connection failed!\n");
+        perror("connect() error");
+        // printf("connection failed!\n");
     } else {
         const char* oob_data = "abc";
         const char* normal_data = "123";
