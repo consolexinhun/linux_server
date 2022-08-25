@@ -20,8 +20,8 @@ int main(int argc, char** argv) {
 
     struct sockaddr_in server_addr;
     bzero(&server_addr, sizeof(server_addr));
-    server_addr.sin_family = PF_INET;
-    server_addr.sin_port = port;
+    server_addr.sin_family = AF_INET;
+    server_addr.sin_port = htons(port);
     inet_pton(AF_INET, ip, &server_addr.sin_addr);
 
     int sockfd = socket(PF_INET, SOCK_STREAM, 0);

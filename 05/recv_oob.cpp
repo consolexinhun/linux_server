@@ -21,8 +21,8 @@ int main(int argc, char** argv) {
 
     struct sockaddr_in addr;
     bzero(&addr, sizeof(addr));
-    addr.sin_family = PF_INET;
-    addr.sin_port = port;
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(port);
     inet_pton(AF_INET, ip, &addr.sin_addr);
 
     int sock = socket(PF_INET, SOCK_STREAM, 0);
