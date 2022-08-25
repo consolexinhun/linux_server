@@ -19,3 +19,6 @@ add_compile_options(-O3 -fPIC)
 
 add_executable(epoll_ET_LT ${ROOT}/epoll_ET_LT.cpp)
 target_link_libraries(epoll_ET_LT pthread)
+
+add_executable(oneshot ${ROOT}/oneshot.cpp)
+target_link_libraries(oneshot pthread)
